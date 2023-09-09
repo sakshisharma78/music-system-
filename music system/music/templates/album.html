@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ album.title }}</h2>
+  <p>Artist: {{ album.artist }}</p>
+  <p>Release Date: {{ album.release_date }}</p>
+  <img src="{{ album.cover_image.url }}" alt="{{ album.title }} Cover">
+  <h3>Songs</h3>
+  <ul>
+    {% for song in album.song_set.all %}
+      <li>{{ song.title }} by {{ song.artist }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
