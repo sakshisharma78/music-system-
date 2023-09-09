@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Music Sharing Platform{% endblock %}</title>
+    <style>
+        /* Inline CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Add more inline CSS styles as needed */
+    </style>
+    <script>
+        // Inline JavaScript code
+        document.addEventListener("DOMContentLoaded", function() {
+            const audioPlayers = document.querySelectorAll(".audio-player");
+
+            audioPlayers.forEach(player => {
+                const audio = player.querySelector("audio");
+                const playButton = player.querySelector(".play-button");
+
+                playButton.addEventListener("click", () => {
+                    if (audio.paused) {
+                        audio.play();
+                        playButton.classList.add("playing");
+                    } else {
+                        audio.pause();
+                        playButton.classList.remove("playing");
+                    }
+                });
+
+                audio.addEventListener("ended", () => {
+                    playButton.classList.remove("playing");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Music Sharing Platform</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'musicapp:home' %}">Home</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Music Sharing Platform</p>
+    </footer>
+</body>
+</html>
